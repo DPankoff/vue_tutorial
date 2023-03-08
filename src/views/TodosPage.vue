@@ -31,15 +31,11 @@
   export default {
     name: 'app',
     data() {
-      return {
-        todos : [
-          {id: 1, title : 'ИПУ РАН', complited: false},
-          {id: 2, title : 'РАНГХИС', complited: false},
-          {id: 3, title : 'МТИ'    , complited: false},
-        ],
+     return { 
+      todos : [],
         loading : true,
         filter : 'all',
-      }
+    }
     },
   
     components: {
@@ -47,12 +43,15 @@
     },
   
     mounted() {
-      fetch('https://jsonplaceholder.typicode.com/todos')
+      fetch('https://jsonplaceholder.typicode.com/todos?_limit=3')
         .then(response => response.json())
         .then(json => {
         setTimeout (() => {
             this.todos   = json
             this.loading = false
+
+            console.log(this.todos)
+
           }, 1000)
       })
     },
